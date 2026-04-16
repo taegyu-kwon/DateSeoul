@@ -1,0 +1,34 @@
+/** Seoul 25 gu (Korean alphabetical order). */
+export const SEOUL_GU = [
+  "\uac15\ub0a8\uad6c",
+  "\uac15\ub3d9\uad6c",
+  "\uac15\ubd81\uad6c",
+  "\uac15\uc11c\uad6c",
+  "\uad00\uc545\uad6c",
+  "\uad11\uc9c4\uad6c",
+  "\uad6c\ub85c\uad6c",
+  "\uae08\ucc9c\uad6c",
+  "\ub178\uc6d0\uad6c",
+  "\ub3c4\ubd09\uad6c",
+  "\ub3d9\ub300\ubb38\uad6c",
+  "\ub3d9\uc791\uad6c",
+  "\ub9c8\ud3ec\uad6c",
+  "\uc11c\ub300\ubb38\uad6c",
+  "\uc11c\ucd08\uad6c",
+  "\uc131\ub3d9\uad6c",
+  "\uc131\ubd81\uad6c",
+  "\uc1a1\ud30c\uad6c",
+  "\uc591\ucc9c\uad6c",
+  "\uc601\ub4f1\ud3ec\uad6c",
+  "\uc6a9\uc0b0\uad6c",
+  "\uc740\ud3c9\uad6c",
+  "\uc885\ub85c\uad6c",
+  "\uc911\uad6c",
+  "\uc911\ub791\uad6c",
+] as const;
+
+/** Han River — separate from administrative gu. */
+export const HAN_RIVER_AREA =
+  "\ud55c\uac15 \uc77c\ub300 (\ud55c\uac15\uacf5\uc6d0\u00b7\uc0b0\ucc45\ub85c \ub4f1)";
+
+export const DEFAULT_AREA = "\uac15\ub0a8\uad6c";

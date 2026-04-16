@@ -1,0 +1,85 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id String               @id @default(cuid())
+  email               String               @unique
+  passwordHash        String
+  name                String
+  createdAt           DateTime             @default(now())
+  updatedAt           DateTime             @updatedAt
+  sharedCourses       SharedCourse[]
+  courseLikes         CourseLike[]
+  savedCourses        SavedCourse[]
+  passwordResetTokens PasswordResetToken[]
+}
+
+model PasswordResetToken {
+  id        String    @id @default(cuid())
+  userId    String
+  user      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  tokenHash String    @unique
+  expiresAt DateTime
+  usedAt    DateTime?
+  createdAt DateTime  @default(now())
+
+  @@index([userId])
+}
+
+model SavedCourse {
+  id         String   @id @default(cuid())
+  userId     String
+  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  title      String
+  courseJson String
+  createdAt  DateTime @default(now())
+
+  @@index([userId, createdAt])
+}
+
+model Place {
+  id         String   @id @default(cuid())
+  placeKey   String   @unique
+  name       String
+  address    String
+  lat        Float
+  lng        Float
+  category   String?
+  visitCount Int      @default(0)
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  @@index([visitCount])
+}
+
+model SharedCourse {
+  id         String       @id @default(cuid())
+  userId     String
+  user       User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+  title      String
+  courseJson String
+  likeCount  Int          @default(0)
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime     @updatedAt
+  likes      CourseLike[]
+
+  @@index([likeCount])
+  @@index([createdAt])
+}
+
+model CourseLike {
+  id             String       @id @default(cuid())
+  userId         String
+  user           User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+  sharedCourseId String
+  course         SharedCourse @relation(fields: [sharedCourseId], references: [id], onDelete: Cascade)
+  createdAt      DateTime     @default(now())
+
+  @@unique([userId, sharedCourseId])
+}
