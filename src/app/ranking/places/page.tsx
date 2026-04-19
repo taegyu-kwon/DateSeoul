@@ -6,6 +6,8 @@ import { extractSeoulGuFromAddress } from "@/lib/address-gu";
 import { prisma } from "@/lib/prisma";
 import { cn } from "@/lib/utils";
 
+export const dynamic = "force-dynamic";
+
 const L = {
   title: "\ub7ad\ud0b9",
   subtitle:
